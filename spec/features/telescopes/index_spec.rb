@@ -1,0 +1,1 @@
+#Telescope id: 1, name: "Spitzer Space Telescope", functioning: false, orbital_period: 372.2, launch_date: nil, mission: "The planned mission period was to be 2.5 years wit...", main_telescope_type: "Ritchey-Chretien", created_at: "2023-03-22 20:59:04", updated_at: "2023-03-22 20:59:04"
