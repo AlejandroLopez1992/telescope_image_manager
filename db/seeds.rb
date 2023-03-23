@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+@spitzer = Telescope.create!(name: "Spitzer Space Telescope",
+                                functioning: false,
+                                orbital_period: 372.2,
+                                launch_date: '2003:08:25',
+                                mission: 'The planned mission period was to be 2.5 years wit...',
+                                main_telescope_type: "Ritchey-Chretien"
+                                )
+@pia18033 = @spitzer.images.create!(name: "PIA18033", 
+                                        image_description: "Behold one of the more stunningly detailed images ...", 
+                                        earth_in_view: true, 
+                                        exif_version: 1520)
