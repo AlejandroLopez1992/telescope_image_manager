@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   get '/telescopes', to: 'telescopes#index'
   get '/telescopes/:id', to: 'telescopes#show'
   get '/images', to: 'images#index'
+  get '/images/:id', to: 'images#show'
 end
