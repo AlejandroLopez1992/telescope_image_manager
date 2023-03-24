@@ -5,7 +5,7 @@ RSpec.describe "image show page", type: :feature do
     @spitzer = Telescope.create!(name: "Spitzer Space Telescope",
                                 functioning: false,
                                 orbital_period: 372.2,
-                                launch_date: '2003:08:25',
+                                launch_date: '2023-03-22 20:59:04.850996',
                                 mission: 'The planned mission period was to be 2.5 years wit...',
                                 main_telescope_type: "Ritchey-Chretien"
                                 )
@@ -20,8 +20,6 @@ RSpec.describe "image show page", type: :feature do
     end
   it "can see all image names and attributes for specific image" do
     visit "/images/#{@pia18033.id}"
-
-    save_and_open_page
 
     expect(page).to have_content(@pia18033.id)
     expect(page).to have_content(@pia18033.telescope_id)
