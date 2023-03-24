@@ -57,11 +57,19 @@ RSpec.describe "telescope_image index page", type: :feature do
     expect(page).to_not have_content(@pia18033.earth_in_view)
   end
 
-  it 'has a link that takes the use back to child index' do
+  it 'has a link that takes the user back to child index' do
     visit "/telescopes/#{@hubble.id}/images"
     
-    expect(page).to have_link("Child Index")
-    click_link "Child Index"
+    expect(page).to have_link("Image Index")
+    click_link "Image Index"
     expect(current_path).to eq('/images')
+  end
+
+  it 'has a link that takes the user back to parent index' do
+    visit "/telescopes/#{@hubble.id}"
+    
+    expect(page).to have_link("Telescope Index")
+    click_link "Telescope Index"
+    expect(current_path).to eq('/telescopes')
   end
 end
