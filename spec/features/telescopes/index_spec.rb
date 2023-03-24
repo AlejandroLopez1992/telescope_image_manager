@@ -47,4 +47,12 @@ RSpec.describe "telescope index page", type: :feature do
     expect(page).to have_content(@spitzer.created_at)
     expect(page).to have_content(@spitzer2.created_at)
   end
+
+  it 'has a link that takes the use back to child index' do
+    visit "/telescopes"
+    
+    expect(page).to have_link("Child Index")
+    click_link "Child Index"
+    expect(current_path).to eq('/images')
+  end
 end

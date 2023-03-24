@@ -36,8 +36,6 @@ RSpec.describe "telescope_image index page", type: :feature do
   it "diplays each image associated with the telescope id" do
     visit "/telescopes/#{@hubble.id}/images"
 
-    save_and_open_page
-
     expect(page).to have_content(@pia12108.id)
     expect(page).to have_content(@pia12108.telescope_id)
     expect(page).to have_content(@pia12108.name)
@@ -57,5 +55,13 @@ RSpec.describe "telescope_image index page", type: :feature do
     expect(page).to have_content(@nasty_17754652960_o.updated_at)
 
     expect(page).to_not have_content(@pia18033.earth_in_view)
+  end
+
+  it 'has a link that takes the use back to child index' do
+    visit "/telescopes/#{@hubble.id}/images"
+    
+    expect(page).to have_link("Child Index")
+    click_link "Child Index"
+    expect(current_path).to eq('/images')
   end
 end

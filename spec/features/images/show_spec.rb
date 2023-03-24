@@ -34,4 +34,12 @@ RSpec.describe "image show page", type: :feature do
     expect(page).to_not have_content(@pia18000.image_description)
     expect(page).to_not have_content(@pia18000.earth_in_view)
   end
+
+  it 'has a link that takes the use back to child index' do
+    visit "/images/#{@pia18033.id}"
+  
+    expect(page).to have_link("Child Index")
+    click_link "Child Index"
+    expect(current_path).to eq('/images')
+  end
 end

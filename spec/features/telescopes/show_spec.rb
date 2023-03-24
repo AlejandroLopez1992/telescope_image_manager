@@ -51,4 +51,12 @@ RSpec.describe "telescope show page", type: :feature do
     
     expect(page).to have_content("Number of images: 2")
   end
+
+  it 'has a link that takes the use back to child index' do
+    visit "/telescopes/#{@hubble.id}"
+    
+    expect(page).to have_link("Child Index")
+    click_link "Child Index"
+    expect(current_path).to eq('/images')
+  end
 end

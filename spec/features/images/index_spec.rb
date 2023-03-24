@@ -21,7 +21,6 @@ RSpec.describe "image index page", type: :feature do
   it "can see all image names and attributes" do
     visit "/images"
     
-    save_and_open_page
     expect(page).to have_content(@pia18033.id)
     expect(page).to have_content(@pia18000.id)
     expect(page).to have_content(@pia18033.telescope_id)
@@ -37,5 +36,13 @@ RSpec.describe "image index page", type: :feature do
     expect(page).to have_content(@pia18000.created_at)
     expect(page).to have_content(@pia18033.updated_at)
     expect(page).to have_content(@pia18000.updated_at)
+  end
+
+  it 'has a link that takes the use back to child index' do
+    visit "/images"
+    
+    expect(page).to have_link("Child Index")
+    click_link "Child Index"
+    expect(current_path).to eq('/images')
   end
 end
