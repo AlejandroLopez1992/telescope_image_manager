@@ -27,11 +27,11 @@
 @pia09178 = @spitzer.images.create!(name: "PIA09178", 
                                     image_description: "This infrared image from NASA Spitzer Space Telescope shows the Helix nebula, a cosmic starlet often photographed by amateur astronomers for its vivid colors and eerie resemblance to a giant eye.", 
                                     earth_in_view: false, 
-                                    exif_version: 0230)
+                                    exif_version: 2302)
 @pia12108 = @hubble.images.create!(name: "PIA12108", 
                                    image_description: "Eerie, dramatic pictures from NASA Hubble telescope show newborn stars emerging from eggs -- dense, compact pockets of interstellar gas called evaporating gaseous globules or EGGs.", 
                                    earth_in_view: false, 
-                                   exif_version: 0230)
+                                   exif_version: 2300)
 @nasty_17754652960_o = @hubble.images.create!(name: "nasty_17754652960_o", 
                                               image_description: "Astronomers using NASA’s Hubble Space Telescope have uncovered surprising new clues about a hefty, rapidly aging star whose behavior has never been seen before in our Milky Way galaxy. In fact, the star is so weird that astronomers have nicknamed it “Nasty 1,” a play on its catalog name of NaSt1. The star may represent a brief transitory stage in the evolution of extremely massive stars.", 
                                               earth_in_view: false, 
