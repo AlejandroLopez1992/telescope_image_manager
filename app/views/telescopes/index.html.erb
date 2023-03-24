@@ -1,0 +1,5 @@
+<h5><a href="/images">Image Index</a></h5> <h5><a href="/telescopes">Telescope Index</a></h5>
+<h1>All Telescopes</h1>
+<% @telescopes.each do |telescope| %>
+<p><%= telescope.name %> --Created at: <%= telescope.created_at %></p>
+<% end %>

@@ -1,0 +1,12 @@
+<h5><a href="/images">Image Index</a></h5>  <h5><a href="/telescopes">Telescope Index</a></h5>
+<h5><%= link_to "#{@telescope.name} Image Index", "/telescopes/#{@telescope.id}/images"%></h5>
+<h1><%= @telescope.name %></h1>
+<p>Number of images: <%= @telescope.images.count %></p>
+<p>ID: <%= @telescope.id %></p>
+<p>Functioning: <%= @telescope.functioning %></p>
+<p>Orbital Period: <%= @telescope.orbital_period %></p>
+<p>Launch Date: <%= @telescope.launch_date %></p>
+<p>Mission: <%= @telescope.mission %></p>
+<p>Main Telescope Type: <%= @telescope.main_telescope_type %></p>
+<p>Entry Created: <%= @telescope.created_at %></p>
+<p>Entry Updated: <%= @telescope.updated_at %></p>

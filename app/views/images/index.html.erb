@@ -1,0 +1,12 @@
+<h5><a href="/images">Image Index</a></h5> <h5><a href="/telescopes">Telescope Index</a></h5>
+<h1>All Images</h1>
+<% @images.each do |image| %>
+<h2>Name: <%= image.name %></h2>
+<p>Image ID: <%= image.id %></p>
+<p>Telescope ID: <%= image.telescope_id %></p>
+<p>Image description: <%= image.image_description %></p>
+<p>Picture of earth?: <%= image.earth_in_view %></p>
+<p>Picture Exif version: <%= image.exif_version %></p>
+<p>Entry created at: <%= image.created_at %></p>
+<p>Entry updated at: <%= image.updated_at %></p>
+<% end %>
