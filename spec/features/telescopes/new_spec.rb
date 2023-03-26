@@ -12,7 +12,7 @@ RSpec.describe 'Telescope creation' do
   it 'can create a new telescope' do
     visit '/telescopes/new'
 
-    fill_in('Name', with: "Spitzer Space Telescope" 'Mission', with: 'The planned mission period was to be' )
+    fill_in('Name', with: "Spitzer Space Telescope")
     fill_in('Functioning', with: false)
     fill_in('Orbital period', with: 372.2)
     fill_in('Launch date', with: '2003-08-25 20:59:04.850996')

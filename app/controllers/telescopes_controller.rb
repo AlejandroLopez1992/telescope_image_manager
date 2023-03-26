@@ -15,7 +15,15 @@ class TelescopesController < ApplicationController
     redirect_to "/telescopes"
   end
 
+  def edit
+    @telescope = Telescope.find(params[:id])
+  end
 
+  def update
+    @telescope = Telescope.find(params[:id])
+    @telescope.update(telescope_params)
+    redirect_to "/telescopes/#{@telescope.id}"
+  end
 
 private
   def telescope_params

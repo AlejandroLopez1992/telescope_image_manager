@@ -10,3 +10,4 @@
 <p>Main Telescope Type: <%= @telescope.main_telescope_type %></p>
 <p>Entry Created: <%= @telescope.created_at %></p>
 <p>Entry Updated: <%= @telescope.updated_at %></p>
+<p><%= button_to "Update #{@telescope.name}", "/telescopes/#{@telescope.id}/edit", method: :get %></p>
