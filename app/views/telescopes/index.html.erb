@@ -3,3 +3,5 @@
 <% @telescopes.each do |telescope| %>
 <p><%= telescope.name %> --Created at: <%= telescope.created_at %></p>
 <% end %>
+
+<%= link_to "New Telescope", "/telescopes/new" %>

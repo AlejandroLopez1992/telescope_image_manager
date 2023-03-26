@@ -43,7 +43,6 @@ RSpec.describe "telescope index page", type: :feature do
   it 'displays when the telescope was created' do
     visit "/telescopes"
 
-    save_and_open_page
     expect(page).to have_content(@spitzer.created_at)
     expect(page).to have_content(@spitzer2.created_at)
   end

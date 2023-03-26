@@ -70,8 +70,7 @@ RSpec.describe "telescope show page", type: :feature do
 
   it 'has a link that takes the user to parent_child index' do
     visit "/telescopes/#{@hubble.id}"
-    
-    save_and_open_page
+
     expect(page).to have_link("Hubble Space Telescope Image Index")
     click_link "Hubble Space Telescope Image Index"
     expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
