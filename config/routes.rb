@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get '/images', to: 'images#index'
   get '/images/:id', to: 'images#show'
   get '/telescopes/:telescope_id/images', to: 'telescope_images#index'
+  get '/telescopes/:telescope_id/images/new', to: 'telescope_images#new'
+  post '/telescopes/:telescope_id/images', to: 'telescope_images#create'
 end

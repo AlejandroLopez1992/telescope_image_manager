@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "telescope_image index page", type: :feature do
+RSpec.describe 'new child creation', type: :feature do
   before :each do
     @spitzer = Telescope.create!(name: "Spitzer Space Telescope",
                                 functioning: false,
@@ -33,43 +33,25 @@ RSpec.describe "telescope_image index page", type: :feature do
                                                   earth_in_view: false, 
                                                   exif_version: 2550)
     end
-  it "diplays each image associated with the telescope id" do
-    visit "/telescopes/#{@hubble.id}/images"
+    it 'has a link to add a new child called create child' do
+      visit "/telescopes/#{@hubble.id}/images"
 
-    expect(page).to have_content(@pia12108.id)
-    expect(page).to have_content(@pia12108.telescope_id)
-    expect(page).to have_content(@pia12108.name)
-    expect(page).to have_content(@pia12108.image_description)
-    expect(page).to have_content(@pia12108.earth_in_view)
-    expect(page).to have_content(@pia12108.exif_version)
-    expect(page).to have_content(@pia12108.created_at)
-    expect(page).to have_content(@pia12108.updated_at)
+      expect(page).to have_link("Create Image")
+      click_link "Create Image"
+      expect(current_path).to eq("/telescopes/#{@hubble.id}/images/new")
+    end
 
-    expect(page).to have_content(@nasty_17754652960_o.id)
-    expect(page).to have_content(@nasty_17754652960_o.telescope_id)
-    expect(page).to have_content(@nasty_17754652960_o.name)
-    expect(page).to have_content(@nasty_17754652960_o.image_description)
-    expect(page).to have_content(@nasty_17754652960_o.earth_in_view)
-    expect(page).to have_content(@nasty_17754652960_o.exif_version)
-    expect(page).to have_content(@nasty_17754652960_o.created_at)
-    expect(page).to have_content(@nasty_17754652960_o.updated_at)
-    
-    expect(page).to_not have_content(@pia18033.earth_in_view)
-  end
+    it 'can create a new image linked to that telescope' do
+      visit "/telescopes/#{@hubble.id}/images/new"
 
-  it 'has a link that takes the user back to child index' do
-    visit "/telescopes/#{@hubble.id}/images"
-    
-    expect(page).to have_link("Image Index")
-    click_link "Image Index"
-    expect(current_path).to eq('/images')
-  end
+      fill_in('Name', with: "example picture")
+      fill_in('Image description', with: "Fancy description")
+      fill_in('Earth in view', with: true)
+      fill_in('Exif version', with: 2030)
 
-  it 'has a link that takes the user back to parent index' do
-    visit "/telescopes/#{@hubble.id}"
-    
-    expect(page).to have_link("Telescope Index")
-    click_link "Telescope Index"
-    expect(current_path).to eq('/telescopes')
-  end
+      click_button("Create Image")
+
+      expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
+      expect(page).to have_content("example picture")
+    end
 end
