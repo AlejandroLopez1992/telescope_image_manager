@@ -7,3 +7,5 @@
 <p>Picture Exif version: <%= @image.exif_version %></p>
 <p>Entry created at: <%= @image.created_at %></p>
 <p>Entry updated at: <%= @image.updated_at %></p>
+
+<%= link_to "Update #{@image.name}", "/images/#{@image.id}/edit", method: :get %>

@@ -1,0 +1,15 @@
+<%= form_with url: "/telescopes/#{@telescope.id}", method: :patch, local: true do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :functioning %>
+<%= form.text_field :functioning %>
+<%= form.label :orbital_period %>
+<%= form.text_field :orbital_period %>
+<%= form.label :launch_date %>
+<%= form.text_field :launch_date %>
+<%= form.label :mission %>
+<%= form.text_field :mission %>
+<%= form.label :main_telescope_type %>
+<%= form.text_field :main_telescope_type %>
+<%= form.submit "Update Telescope" %>
+<% end %>

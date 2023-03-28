@@ -1,5 +1,7 @@
 require 'rails_helper'
-RSpec.describe "telescope show page", type: :feature do
+
+RSpec.describe 'Image Edit' do
+
   before :each do
     @spitzer = Telescope.create!(name: "Spitzer Space Telescope",
                              functioning: false,
@@ -19,6 +21,10 @@ RSpec.describe "telescope show page", type: :feature do
                                         image_description: "Behold one of the more stunningly detailed images ...", 
                                         earth_in_view: true, 
                                         exif_version: 1520)
+    @pia09178 = @spitzer.images.create!(name: "PIA09178", 
+                                        image_description: "This infrared image from NASA Spitzer Space Telescope shows the Helix nebula, a cosmic starlet often photographed by amateur astronomers for its vivid colors and eerie resemblance to a giant eye.", 
+                                        earth_in_view: false, 
+                                        exif_version: 2302)
     @pia12108 = @hubble.images.create!(name: "PIA12108", 
                                       image_description: "Eerie, dramatic pictures from NASA Hubble telescope show newborn stars emerging from eggs -- dense, compact pockets of interstellar gas called evaporating gaseous globules or EGGs.", 
                                       earth_in_view: false, 
@@ -28,51 +34,28 @@ RSpec.describe "telescope show page", type: :feature do
                                                   earth_in_view: false, 
                                                   exif_version: 2550)
   end
-  it "telescopes ID and all attributes" do
-    visit "/telescopes/#{@spitzer.id}"
 
-    expect(page).to have_content(@spitzer.id)
-    expect(page).to_not have_content(@pia18033.name)
-    expect(page).to have_content(@spitzer.name)
-    expect(page).to have_content(@spitzer.functioning)
-    expect(page).to have_content(@spitzer.orbital_period)
-    expect(page).to have_content(@spitzer.launch_date)
-    expect(page).to have_content(@spitzer.mission)
-    expect(page).to have_content(@spitzer.main_telescope_type)
-    expect(page).to have_content(@spitzer.created_at)
-    expect(page).to have_content(@spitzer.updated_at)
+  it 'has a link that goes redirects to the images edit page' do
+    visit "/images/#{@pia18033.id}"
+
+    click_link "Update #{@pia18033.name}"
+    expect(current_path).to eq("/images/#{@pia18033.id}/edit")
   end
 
-  it 'telescope shows a count of the number of images it has taken' do
-    visit "/telescopes/#{@spitzer.id}"
-  
-    expect(page).to have_content("Number of images: 1")
-    visit "/telescopes/#{@hubble.id}"
-    
-    expect(page).to have_content("Number of images: 2")
-  end
+  it 'can edit the image' do
+    visit "/images/#{@pia18033.id}"
 
-  it 'has a link that takes the user back to child index' do
-    visit "/telescopes/#{@hubble.id}"
-    
-    expect(page).to have_link("Image Index")
-    click_link "Image Index"
-    expect(current_path).to eq('/images')
-  end
+    expect(page).to have_content("PIA18033")
 
-  it 'has a link that takes the user back to parent index' do
-    visit "/telescopes/#{@hubble.id}"
-    
-    expect(page).to have_link("Telescope Index")
-    click_link "Telescope Index"
-    expect(current_path).to eq('/telescopes')
-  end
+    click_link "Update #{@pia18033.name}"
+    fill_in('Name', with: "Big Bad Picture")
+    fill_in('Image description', with: "The greatest picture of all time")
+    fill_in('Earth in view', with: true)
+    fill_in('Exif version', with: 400.8)
 
-  it 'has a link that takes the user to parent_child index' do
-    visit "/telescopes/#{@hubble.id}"
+    click_button "Update #{@pia18033.name}"
 
-    expect(page).to have_link("Hubble Space Telescope Image Index")
-    click_link "Hubble Space Telescope Image Index"
-    expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
+    expect(current_path).to eq("/images/#{@pia18033.id}")
+    expect(page).to have_content("Big Bad Picture")
   end
 end

@@ -1,0 +1,11 @@
+<%= form_with url: "/telescopes/#{@telescope.id}/images", method: :post, local: true do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :image_description %>
+<%= form.text_field :image_description %>
+<%= form.label :earth_in_view %>
+<%= form.text_field :earth_in_view %>
+<%= form.label :exif_version %>
+<%= form.text_field :exif_version %>
+<%= form.submit "Create Image" %>
+<% end %>

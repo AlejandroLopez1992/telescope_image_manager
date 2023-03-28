@@ -43,7 +43,6 @@ RSpec.describe "telescope index page", type: :feature do
   it 'displays when the telescope was created' do
     visit "/telescopes"
 
-    save_and_open_page
     expect(page).to have_content(@spitzer.created_at)
     expect(page).to have_content(@spitzer2.created_at)
   end
@@ -62,5 +61,14 @@ RSpec.describe "telescope index page", type: :feature do
     expect(page).to have_link("Telescope Index")
     click_link "Telescope Index"
     expect(current_path).to eq('/telescopes')
+  end
+
+  it 'has a link next to each telescope that sends to edit page' do
+    visit "/telescopes"
+   
+    expect(page).to have_link("Update #{@spitzer.name}")
+    expect(page).to have_link("Update #{@spitzer2.name}")
+    click_link "Update #{@spitzer.name}"
+    expect(current_path).to eq("/telescopes/#{@spitzer.id}/edit")
   end
 end
