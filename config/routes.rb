@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   get '/telescopes/:telescope_id/images/:image_id/edit', to: 'images#edit'
   get '/images/:image_id/edit', to: 'images#edit'
   patch '/images/:image_id', to: 'images#update'
+  delete '/telescopes/:telescope_id', to: 'telescopes#destroy'
+  delete '/images/:image_id', to: 'images#destroy'
 end

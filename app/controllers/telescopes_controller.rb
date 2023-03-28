@@ -25,6 +25,14 @@ class TelescopesController < ApplicationController
     redirect_to "/telescopes/#{@telescope.id}"
   end
 
+  def destroy
+    @telescope = Telescope.find(params[:telescope_id])
+    @telescope_images = @telescope.images
+    @telescope_images.destroy_all
+    @telescope.destroy
+    redirect_to "/telescopes"
+  end
+
 private
   def telescope_params
     params.permit(:name, :functioning, :orbital_period, :launch_date, :mission, :main_telescope_type)
