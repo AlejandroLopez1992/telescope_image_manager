@@ -11,3 +11,4 @@
 <p>Entry updated at: <%= image.updated_at %></p>
 <% end %>
 <%= link_to "Create Image", "/telescopes/#{@telescope.id}/images/new" %>
+<%= link_to "Sort Images Alphabetically", "/telescopes/#{@telescope.id}/images?order=clicked", method: :get %>

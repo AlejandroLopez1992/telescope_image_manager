@@ -1,7 +1,7 @@
 class TelescopeImagesController < ApplicationController
   def index
     @telescope = Telescope.find(params[:telescope_id])
-    @images = @telescope.images
+    @images = @telescope.sort_alphabetically(params['order'])
   end
 
   def new

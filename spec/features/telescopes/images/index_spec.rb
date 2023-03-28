@@ -24,11 +24,11 @@ RSpec.describe "telescope_image index page", type: :feature do
                                         image_description: "This infrared image from NASA Spitzer Space Telescope shows the Helix nebula, a cosmic starlet often photographed by amateur astronomers for its vivid colors and eerie resemblance to a giant eye.", 
                                         earth_in_view: false, 
                                         exif_version: 0230)
-    @pia12108 = @hubble.images.create!(name: "PIA12108", 
+    @pia12108 = @hubble.images.create!(name: "beeer", 
                                        image_description: "Eerie, dramatic pictures from NASA Hubble telescope show newborn stars emerging from eggs -- dense, compact pockets of interstellar gas called evaporating gaseous globules or EGGs.", 
                                        earth_in_view: false, 
                                        exif_version: 0230)
-    @nasty_17754652960_o = @hubble.images.create!(name: "nasty_17754652960_o", 
+    @nasty_17754652960_o = @hubble.images.create!(name: "aaab", 
                                                   image_description: "Astronomers using NASA’s Hubble Space Telescope have uncovered surprising new clues about a hefty, rapidly aging star whose behavior has never been seen before in our Milky Way galaxy. In fact, the star is so weird that astronomers have nicknamed it “Nasty 1,” a play on its catalog name of NaSt1. The star may represent a brief transitory stage in the evolution of extremely massive stars.", 
                                                   earth_in_view: false, 
                                                   exif_version: 2550)
@@ -71,5 +71,13 @@ RSpec.describe "telescope_image index page", type: :feature do
     expect(page).to have_link("Telescope Index")
     click_link "Telescope Index"
     expect(current_path).to eq('/telescopes')
+  end
+
+  it 'has a link that sorts images alphabetically' do
+    visit "/telescopes/#{@hubble.id}/images"
+
+    click_link "Sort Images Alphabetically"
+    expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
+    expect(@nasty_17754652960_o.name).to appear_before(@pia12108.name)
   end
 end
