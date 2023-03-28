@@ -18,6 +18,12 @@ class ImagesController < ApplicationController
     redirect_to "/images/#{@image.id}"
   end
 
+  def destroy
+    @image = Image.find(params[:image_id])
+    @image.destroy
+    redirect_to "/images"
+  end
+
   private
   def image_params
     params.permit(:name, :image_description, :earth_in_view, :exif_version)

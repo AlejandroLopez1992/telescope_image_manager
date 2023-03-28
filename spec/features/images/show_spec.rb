@@ -50,4 +50,11 @@ RSpec.describe "image show page", type: :feature do
     click_link "Telescope Index"
     expect(current_path).to eq('/telescopes')
   end
+
+  it 'has a delete link that redirects to the image index' do
+    visit "/images/#{@pia18033.id}"
+
+    click_link "Delete #{@pia18033.name}"
+    expect(current_path).to eq("/images")
+  end
 end

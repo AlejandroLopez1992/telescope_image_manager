@@ -9,3 +9,4 @@
 <p>Entry updated at: <%= @image.updated_at %></p>
 
 <%= link_to "Update #{@image.name}", "/images/#{@image.id}/edit", method: :get %>
+<%= link_to "Delete #{@image.name}", "/images/#{@image.id}", method: :delete %>
