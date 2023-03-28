@@ -1,6 +1,7 @@
-class ImagesController <ApplicationController
+class ImagesController < ApplicationController
   def index
-    @images = Image.all
+    @images = Image.show_only_true
+    @true_images
   end
 
   def show

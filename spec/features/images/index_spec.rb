@@ -15,7 +15,7 @@ RSpec.describe "image index page", type: :feature do
                                         exif_version: 1520)
     @pia18000 = @spitzer.images.create!(name: "PIA18000", 
                                         image_description: "Behold one of the more stunningly detailed images ...", 
-                                        earth_in_view: false, 
+                                        earth_in_view: true, 
                                         exif_version: 1577) 
     end
   it "can see all image names and attributes" do
@@ -52,5 +52,17 @@ RSpec.describe "image index page", type: :feature do
     expect(page).to have_link("Telescope Index")
     click_link "Telescope Index"
     expect(current_path).to eq('/telescopes')
+  end
+
+  it 'only shows images where earth in view is true' do
+    @test = @spitzer.images.create!(name: "TEST", 
+                                        image_description: "Behold one of the more stunningly detailed images ...", 
+                                        earth_in_view: false, 
+                                        exif_version: 1577) 
+    visit "/images"
+
+    save_and_open_page
+    expect(page).to have_content(@pia18033.name)
+    expect(page).to_not have_content(@test.name)
   end
 end
