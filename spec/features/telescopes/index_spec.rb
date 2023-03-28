@@ -65,7 +65,7 @@ RSpec.describe "telescope index page", type: :feature do
 
   it 'has a link next to each telescope that sends to edit page' do
     visit "/telescopes"
-    save_and_open_page
+   
     expect(page).to have_link("Update #{@spitzer.name}")
     expect(page).to have_link("Update #{@spitzer2.name}")
     click_link "Update #{@spitzer.name}"

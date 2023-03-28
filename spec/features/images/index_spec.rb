@@ -61,8 +61,16 @@ RSpec.describe "image index page", type: :feature do
                                         exif_version: 1577) 
     visit "/images"
 
-    save_and_open_page
     expect(page).to have_content(@pia18033.name)
     expect(page).to_not have_content(@test.name)
+  end
+
+  it 'has a link next to each image that sends to edit page' do
+    visit "/images"
+  
+    expect(page).to have_link("Update #{@pia18033.name}")
+    expect(page).to have_link("Update #{@pia18000.name}")
+    click_link "Update #{@pia18000.name}"
+    expect(current_path).to eq("/images/#{@pia18000.id}/edit")
   end
 end

@@ -80,4 +80,13 @@ RSpec.describe "telescope_image index page", type: :feature do
     expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
     expect(@nasty_17754652960_o.name).to appear_before(@pia12108.name)
   end
+
+  it 'has a link next to each image that sends to edit page' do
+    visit "/telescopes/#{@spitzer.id}/images"
+    
+    expect(page).to have_link("Update #{@pia18033.name}")
+    expect(page).to have_link("Update #{@pia09178.name}")
+    click_link "Update #{@pia18033.name}"
+    expect(current_path).to eq("/telescopes/#{@spitzer.id}/images/#{@pia18033.id}/edit")
+  end
 end
