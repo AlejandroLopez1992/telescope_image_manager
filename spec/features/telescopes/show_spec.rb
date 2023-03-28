@@ -75,4 +75,20 @@ RSpec.describe "telescope show page", type: :feature do
     click_link "Hubble Space Telescope Image Index"
     expect(current_path).to eq("/telescopes/#{@hubble.id}/images")
   end
+
+  #User Story 19, Parent Delete 
+
+# As a visitor
+# When I visit a parent show page
+# Then I see a link to delete the parent
+# When I click the link "Delete Parent"
+# Then a 'DELETE' request is sent to '/parents/:id',
+# the parent is deleted, and all child records are deleted
+# and I am redirected to the parent index page where I no longer see this parent
+  it 'has a delete link that redirects to the parent index' do
+    visit "telescopes/#{@hubble.id}"
+
+    click_link "Delete #{@hubble.name}"
+    expect(current_path).to eq("/telescopes")
+  end
 end
